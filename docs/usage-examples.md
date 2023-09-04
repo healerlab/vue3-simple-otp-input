@@ -1,4 +1,4 @@
-# Vue 3 simple OTP input
+# Getting Started
 
 ## Installation
 
@@ -8,24 +8,23 @@
 - Text Editor.
   - [VSCode](https://code.visualstudio.com/) is recommended, along with the [official Vue extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar).
 
-To get started, you can install `vue3-simple-otp-input` with:
+To get started, you can install it with:
 
-```bash
-npm i @healerlab/vue3-simple-otp-input
+::: code-group
+
+```sh [npm]
+$ npm i @healerlab/vue3-simple-otp-input
 ```
 
-with pnpm:
-
-```bash
-pnpm add @healerlab/vue3-simple-otp-input
+```sh [pnpm]
+$ pnpm add @healerlab/vue3-simple-otp-input
 ```
 
-with yarn:
-
-```bash
-yarn add @healerlab/vue3-simple-otp-input
+```sh [yarn]
+$ yarn add @healerlab/vue3-simple-otp-input
 ```
 
+:::
 
 
 ## Usage
@@ -85,4 +84,4 @@ This is minimal style for your input, you can change it to match your use-case:
 </style>
 ```
 
-See the [Vue3 Simple OTP Input](https://healerlab.github.io/vue3-simple-otp-input) page for more information.
+In next section, you can explore more about props, event within this component

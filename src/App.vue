@@ -4,9 +4,9 @@
     <HOtpInput
       :length="6" 
       type="text" 
-      @on-complete="handleComplete"
+      @on-finish="handleComplete"
       @on-change="handleChange" 
-      wrapClass="otp-input"
+      wrapperClassName="otp-input"
       :outlined="true"
       ref="otpInput"
       :only-number="true"
@@ -22,7 +22,7 @@ const handleComplete = (otpCode: string) => {
 }
 
 const handleChange = (otpCode: string) => {
-  console.log(111, otpCode);
+  console.log(222, otpCode);
 }
 </script>
 <style lang="scss" scoped>

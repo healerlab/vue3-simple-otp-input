@@ -1,5 +1,5 @@
 <template>
-  <div class="hl-input-container m-auto text-center" :class="wrapClass">
+  <div class="hl-input-container m-auto text-center" :class="wrapperClassName">
     <input
       v-for="(input, index) in length"
       :element-num="input"
@@ -14,7 +14,7 @@
         color: fontColor,
         ...conditionClass(index)
       }"
-      :class="inputClass"
+      :class="inputClassName"
       :disabled="disabled"
       :readonly="readonly"
       contenteditable="true"
@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import { ref, onMounted, watch, ComponentPublicInstance, ComponentOptionsBase, PropType, CSSProperties } from 'vue'
 
-const emits = defineEmits(['onComplete', 'onChange'])
+const emits = defineEmits(['onFinish', 'onChange'])
 const props = defineProps({
   length: {
     type: Number,
@@ -86,11 +86,11 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  wrapClass: {
+  wrapperClassName: {
     type: String,
     default: ""
   },
-  inputClass: {
+  inputClassName: {
     type: String,
     default: ""
   }
@@ -198,11 +198,10 @@ const updateInputValue = (index: number, value: any) => {
 
 const returnFullString = () => {  
   const data = inputValues.value.join('')
+  emits('onChange', data)
   if (data.length === props.length) {
-    emits('onComplete', data)
+    emits('onFinish', data)
     currentActiveIndex.value = -1
-  } else {
-    emits('onChange', data)
   }
 }
 
