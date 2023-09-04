@@ -61,7 +61,7 @@
     "vue-tsc": "^1.8.5"
   },
   "license": "MIT",
-  "homepage": "https://labs.tuannd.dev",
+  "homepage": "https://healerlab.github.io/vue3-simple-otp-input",
   "bugs": {
     "url": "https://github.com/healerlab/vue3-simple-otp-input/issues"
   },

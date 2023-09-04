@@ -10,13 +10,6 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/vite.svg' }],
     ['meta', { name: 'theme-color', content: '#5f67ee' }],
-    // [
-    //   'script',
-    //   {
-    //     src: 'https://unpkg.com/@healerlab/vue3-simple-otp-input',
-    //     defer: ''
-    //   }
-    // ]
   ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -25,7 +18,7 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/usage-examples' },
       {
-        text: '0.0.4',
+        text: '0.0.5',
         items: [
           {
             text: 'Changelog',
