@@ -35,7 +35,9 @@ Here we display a list of settings that could be applied within an application.
 
 <script setup lang="ts">
 import { ref } from 'vue'
-import { HOtpInput } from "@healerlab/vue3-simple-otp-input";
+import pkg from "@healerlab/vue3-simple-otp-input";
+const { HOtpInput } = pkg
+
 const otpInput = ref(null)
 const otpCode = ref()
 const otpCodeChange = ref()
