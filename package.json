@@ -1,0 +1,56 @@
+{
+  "name": "vue3-simple-otp-input",
+  "private": false,
+  "version": "0.0.1",
+  "description": "Powerful, lightweight, and reusable OTP input component for Vue 3",
+  "main": "./dist/h-otp-input.umd.js",
+  "module": "./dist/h-otp-input.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/h-otp-input.esm.js",
+      "require": "./dist/h-otp-input.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "vue",
+    "vue3",
+    "component",
+    "library",
+    "otp input",
+    "pincode",
+    "one time password",
+    "payment password"
+  ],
+  "author": "HealerLabs",
+  "peerDependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.3",
+    "vue-tsc": "^1.8.5",
+    "vue": "^3.3.4"
+  },
+  "license": "MIT",
+  "homepage": "https://labs.tuannd.dev",
+  "bugs": {
+    "url": "https://github.com/HealerLabs/vue3-simple-otp-input/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HealerLabs/vue3-simple-otp-input"
+  }
+}
