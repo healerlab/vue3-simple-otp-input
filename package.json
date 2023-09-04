@@ -1,7 +1,7 @@
 {
   "name": "@healerlab/vue3-simple-otp-input",
   "private": false,
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "Powerful, lightweight, and reusable OTP input component for Vue 3",
   "main": "./dist/h-otp-input.umd.cjs",
   "module": "./dist/h-otp-input.js",
