@@ -1,20 +1,19 @@
 {
-  "name": "vue3-simple-otp-input",
+  "name": "@healerlab/vue3-simple-otp-input",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Powerful, lightweight, and reusable OTP input component for Vue 3",
-  "main": "./dist/h-otp-input.umd.js",
+  "main": "./dist/h-otp-input.umd.cjs",
   "module": "./dist/h-otp-input.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/h-otp-input.esm.js",
+      "import": "./dist/h-otp-input.umd.cjs",
       "require": "./dist/h-otp-input.js"
     }
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "type": "module",
   "scripts": {
@@ -41,8 +40,8 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.5.3",
-    "vue-tsc": "^1.8.5",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.8.5"
   },
   "license": "MIT",
   "homepage": "https://labs.tuannd.dev",
@@ -51,6 +50,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/HealerLabs/vue3-simple-otp-input"
+    "url": "git+https://github.com/HealerLabs/vue3-simple-otp-input.git"
   }
 }
