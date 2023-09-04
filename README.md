@@ -1,5 +1,12 @@
 # Vue 3 simple OTP input
 
+[![npm](https://img.shields.io/npm/v/@healerlab/vue3-simple-otp-input?style=flat-square)](https://www.npmjs.com/package/@healerlab/vue3-simple-otp-input)
+[![npm](https://img.shields.io/npm/dw/@healerlab/vue3-simple-otp-input?style=flat-square)](https://www.npmjs.com/package/@healerlab/vue3-simple-otp-input)
+[![GitHub](https://img.shields.io/github/license/healerlab/vue3-simple-otp-input?style=flat-square)](https://github.com/healerlab/vue3-simple-otp-input/blob/main/LICENSE)
+
+## Demo
+[Demo and docs](https://healerlab.github.io/vue3-simple-otp-input)
+
 ## Installation
 
 ### Prerequisites
