@@ -43,7 +43,7 @@
     "one time password input component built with vue 3",
     "vue split input"
   ],
-  "author": "HealerLabs",
+  "author": "HealerNguyen",
   "peerDependencies": {
     "vue": "^3.3.4"
   },
@@ -59,10 +59,10 @@
   "license": "MIT",
   "homepage": "https://labs.tuannd.dev",
   "bugs": {
-    "url": "https://github.com/HealerLabs/vue3-simple-otp-input/issues"
+    "url": "https://github.com/healerlab/vue3-simple-otp-input/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HealerLabs/vue3-simple-otp-input.git"
+    "url": "git+https://github.com/healerlab/vue3-simple-otp-input.git"
   }
 }
