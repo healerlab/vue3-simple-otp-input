@@ -16,7 +16,7 @@
 <script lang="ts" setup>
 import {ref} from 'vue'
 const otpInput = ref<any>(null)
-import HOtpInput from './components/HOtpInput.vue'
+import { HOtpInput } from '@healerlab/vue3-simple-otp-input'
 const handleComplete = (otpCode: string) => {
   console.log(111, otpCode);
 }
