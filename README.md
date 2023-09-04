@@ -1,1 +1,1 @@
-# docs
+# Vue 3 simple OTP input
