@@ -1,51 +1,54 @@
 <template>
-  <div class="hl-input-container m-auto text-center">
+  <div class="hl-input-container m-auto text-center" :class="wrapClass">
     <input
-      v-for="(index) in length"
+      v-for="(input, index) in length"
+      :element-num="input"
       :id="generateInputId(index)"
       :ref="(el) => generateRef(index, el)"
       :key="index"
       v-model="inputValues[index]"
-      type="password"
+      :type="type"
       maxlength="1"
       :style="{
-        fontSize: hlFontSize,
-        borderBottom: hlInputColor(index),
+        borderBottom: hlBorderColor(index),
         color: fontColor,
-        width: hlWidth
+        ...conditionClass(index)
       }"
+      :class="inputClass"
+      :disabled="disabled"
+      :readonly="readonly"
       contenteditable="true"
-      @keydown="handleKeydown"
+      @keydown="(e: KeyboardEvent) => handleKeydown(e)"
       @keyup="handleInputFocus(index)"
       @paste.prevent="handlePastedValues"
       @input="returnFullString()"
+      @focus="handleFocus(index)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, ComponentPublicInstance, ComponentOptionsBase } from 'vue'
+import { ref, onMounted, watch, ComponentPublicInstance, ComponentOptionsBase, PropType, CSSProperties } from 'vue'
 
-const emits = defineEmits(['otpCodeData'])
+const emits = defineEmits(['onComplete', 'onChange'])
 const props = defineProps({
   length: {
     type: Number,
     required: true,
     default: 6
   },
-  fontSize: {
-    type: Number,
-    default: 22,
-    required: false
-  },
-  inputColor: {
+  defaultColor:{
     type: String,
-    default: '#063451',
+    default: '#eeeeee'
+  },
+  mainColor: {
+    type: String,
+    default: '#00dc82',
     required: false
   },
   fontColor: {
     type: String,
-    default: '#444444',
+    default: 'black',
     required: false
   },
   allowPaste: {
@@ -55,12 +58,41 @@ const props = defineProps({
   },
   onlyNumber: {
     type: Boolean,
-    default: true,
-    required: false
+    default: false
   },
   isRefresh: {
     type: Boolean,
     default: false
+  },
+  type: {
+    type: String as PropType<"password" | "text">,
+    default: "password",
+    validator: (value: string) =>
+        ["password", "text"].includes(value),
+  },
+  autoFocus: {
+    type: Boolean,
+    default: true
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  outlined: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: false
+  },
+  wrapClass: {
+    type: String,
+    default: ""
+  },
+  inputClass: {
+    type: String,
+    default: ""
   }
 })
 
@@ -69,17 +101,26 @@ watch(
   () => {
     inputValues.value = []
     inputRefs[0].focus()
+    currentActiveIndex.value = -1
   }
 )
 
 const inputRefs: any = {}
-
 const inputValues = ref([])
+const currentActiveIndex = ref(-1)
 
-const hlFontSize = computed(() => `${props.fontSize}px`)
-const hlWidth = computed(() => `${props.fontSize + 8}px`)
 
-const handleKeydown = (event: any) => {
+const clear = () => {
+  inputValues.value = []
+  inputRefs[0].focus()
+  currentActiveIndex.value = -1
+}
+
+defineExpose({
+  clear
+});
+
+const handleKeydown = (event: KeyboardEvent) => {
   if (!props.onlyNumber) {
     return
   }
@@ -103,21 +144,29 @@ const generateRef = (index: number, el: Element | ComponentPublicInstance<{}, {}
 }
 
 const generateInputId = (index: number) => {
-  return `hl_${index + 1}`
+  return `hl-${index + 1}`
 }
 
-const hlInputColor = (index: number) => {
-  const color = inputValues.value[index] ? props.inputColor : '#eeeeee'
+const hlBorderColor = (index: number) => {
+  const color = inputValues.value[index] ? props.mainColor : props.defaultColor
 
   return `3px solid ${color}`
 }
 
-const handleInputFocus = (index: number) => {
-  if (inputValues.value[index] && inputValues.value[index] !== '' && index < props.length - 1) {
-    inputRefs[index + 1].focus()
+const handleInputFocus = (index: number) => {  
+  if (inputValues.value[index] && inputValues.value[index] !== '' && index < props.length) {
+    currentActiveIndex.value = index + 1
+    inputRefs[index + 1] && inputRefs[index + 1].focus()
   } else if (index > 0 && (!inputValues.value[index] || inputValues.value[index] === '')) {
-    inputRefs[index - 1].focus()
+    if (inputRefs[index - 1]) {
+      inputRefs[index - 1].focus()
+      currentActiveIndex.value = index - 1
+    }
   }
+}
+
+const handleFocus = (index: number) => {
+  inputRefs[index].select()
 }
 
 const handlePastedValues = (event: ClipboardEvent) => {
@@ -136,7 +185,7 @@ const handlePastedValues = (event: ClipboardEvent) => {
         updateInputValue(i, splitValues[i])
       }
 
-      inputRefs[props.length].focus()
+      inputRefs[props.length-1].focus()
 
       returnFullString()
     }
@@ -144,26 +193,43 @@ const handlePastedValues = (event: ClipboardEvent) => {
 }
 
 const updateInputValue = (index: number, value: any) => {
-  inputValues.value[index] = value as never
+  inputValues.value[index] = value as never  
 }
 
-const returnFullString = () => {
+const returnFullString = () => {  
   const data = inputValues.value.join('')
-  if (data.length === props.length) emits('otpCodeData', data)
+  if (data.length === props.length) {
+    emits('onComplete', data)
+    currentActiveIndex.value = -1
+  } else {
+    emits('onChange', data)
+  }
+}
+
+onMounted(() => {
+  if (props.autoFocus) {
+    inputRefs && inputRefs[0].focus()
+  }
+})
+
+const conditionClass = (index: number): CSSProperties => {
+  if (props.outlined) {
+    return {
+      outline: outlineFocusClass(currentActiveIndex.value === index),
+      borderBottom: 'none',
+      borderRadius: '2px',
+    }
+  }
+  return {
+    borderBottom: hlBorderColor(index)
+  }
+}
+
+const outlineFocusClass = (isFocus:  boolean) => {
+  const color = isFocus ? props.mainColor : props.defaultColor
+  if (props.outlined) {
+    return `2px solid ${color}`
+  }
+  return 'none'
 }
 </script>
-
-<!-- <style lang="scss" scoped>
-.hl-input-container input {
-  border: none;
-  margin-left: 10px;
-  text-align: center;
-
-  &:first-child {
-    margin-left: 0;
-  }
-  &:focus {
-    outline: none;
-  }
-}
-</style> -->

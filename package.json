@@ -1,13 +1,13 @@
 {
   "name": "@healerlab/vue3-simple-otp-input",
   "private": false,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Powerful, lightweight, and reusable OTP input component for Vue 3",
   "main": "./dist/h-otp-input.umd.cjs",
   "module": "./dist/h-otp-input.js",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/h-otp-input.umd.cjs",
       "require": "./dist/h-otp-input.js"
     }
@@ -28,8 +28,20 @@
     "library",
     "otp input",
     "pincode",
+    "otp",
+    "input",
+    "otp input",
+    "vue otp input",
+    "vue 3 otp input",
+    "one-time password",
     "one time password",
-    "payment password"
+    "payment password",
+    "vue composition API",
+    "one time password input",
+    "one time password input component",
+    "one time password input component built with vue",
+    "one time password input component built with vue 3",
+    "vue split input"
   ],
   "author": "HealerLabs",
   "peerDependencies": {
@@ -37,6 +49,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "sass": "^1.66.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-plugin-dts": "^3.5.3",
