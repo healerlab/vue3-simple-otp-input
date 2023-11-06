@@ -1,29 +1,31 @@
 <template>
   <div class="hl-input-container m-auto text-center" :class="wrapperClassName">
-    <input
-      v-for="(input, index) in length"
-      :element-num="input"
-      :id="generateInputId(index)"
-      :ref="(el) => generateRef(index, el)"
-      :key="index"
-      v-model="inputValues[index]"
-      :type="type"
-      maxlength="1"
-      :style="{
-        borderBottom: hlBorderColor(index),
-        color: fontColor,
-        ...conditionClass(index)
-      }"
-      :class="inputClassName"
-      :disabled="disabled"
-      :readonly="readonly"
-      contenteditable="true"
-      @keydown="(e: KeyboardEvent) => handleKeydown(e)"
-      @keyup="handleInputFocus(index)"
-      @paste.prevent="handlePastedValues"
-      @input="returnFullString()"
-      @focus="handleFocus(index)"
-    />
+    <template v-for="(input, index) in length" :key="index">
+      <input
+        :element-num="input"
+        :id="generateInputId(index)"
+        :ref="(el) => generateRef(index, el)"
+        v-model="inputValues[index]"
+        :type="type"
+        maxlength="1"
+        :style="{
+          borderBottom: hlBorderColor(index),
+          color: fontColor,
+          ...conditionClass(index)
+        }"
+        :class="inputClassName"
+        :disabled="disabled"
+        :readonly="readonly"
+        contenteditable="true"
+        @keydown="(e: KeyboardEvent) => handleKeydown(e)"
+        @keyup="handleInputFocus(index)"
+        @paste.prevent="handlePastedValues"
+        @input="returnFullString()"
+        @focus="handleFocus(index)"
+        :autocomplete="autocomplete"
+      />
+      <div v-if="separator && checkSeparatorType(index)" class="hl-separator"><span>{{ separator }}</span></div>
+    </template>
   </div>
 </template>
 
@@ -93,6 +95,20 @@ const props = defineProps({
   inputClassName: {
     type: String,
     default: ""
+  },
+  autocomplete: {
+    type: [String],
+    default: 'off'
+  },
+  separator: {
+    type: String,
+    default: ''
+  },
+  separatorType: {
+    type: String as PropType<"middle" | "all">,
+    default: "middle",
+    validator: (value: string) =>
+        ["middle", "all"].includes(value),
   }
 })
 
@@ -105,6 +121,14 @@ watch(
   }
 )
 
+const checkSeparatorType = (index: number) => {
+  if (props.separatorType === 'middle') {
+    return index === props.length / 2 -1
+  } else {
+    return index < props.length - 1
+  }
+}
+
 const inputRefs: any = {}
 const inputValues = ref([])
 const currentActiveIndex = ref(-1)
@@ -115,10 +139,6 @@ const clear = () => {
   inputRefs[0].focus()
   currentActiveIndex.value = -1
 }
-
-defineExpose({
-  clear
-});
 
 const handleKeydown = (event: KeyboardEvent) => {
   if (!props.onlyNumber) {
@@ -205,6 +225,18 @@ const returnFullString = () => {
   }
 }
 
+const genResultWithSeparator = () => {
+  const data = inputValues.value.join('')
+  if (!props.separator) return data
+  if (props.separatorType === 'middle') {             
+    const newArr =  data.split('')
+    newArr.splice(props.length / 2, 0, props.separator)
+    return newArr.join('')
+  } else {    
+    return data.split('').join(props.separator)
+  }
+}
+
 onMounted(() => {
   if (props.autoFocus) {
     inputRefs && inputRefs[0].focus()
@@ -231,4 +263,9 @@ const outlineFocusClass = (isFocus:  boolean) => {
   }
   return 'none'
 }
+
+defineExpose({
+  clear,
+  genResultWithSeparator
+});
 </script>

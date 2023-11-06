@@ -25,6 +25,8 @@ This page demonstrates usage of props and events provided by HOtpInput.
 | inputClassName | `String` | `null` | The class name to use for each input element. |
 | onChange | `Function` | `null` | Callback event that return OTP code when we made a change in inputs. `(otpCode: string)` |
 | onFinish | `Function` | `null` | Callback event that return OTP code when we fully typed all inputs. `(otpCode: string)` |
+| separator | `String` | `null` | Separator to be rendered. |
+| separatorType | `String` | `middle` | Default separator position if separator is not null |
 
 See the [Vue3 Simple OTP Input](https://www.npmjs.com/package/@healerlab/vue3-simple-otp-input) package for more information.
 

@@ -49,6 +49,11 @@ const handleFinish = (otpCode: string) => {
 const handleChange = (otpCode: string) => {
   // write logic with changed code
 }
+
+const getCodeWithSeparator = () => {
+  // get code with separator
+  // otpInput?.value?.genResultWithSeparator()
+}
 </script>
 ```
 
@@ -64,6 +69,8 @@ Use the component in your template:
   :outlined="true"
   ref="otpInput"
   :only-number="true"
+  separator="-" // separator support
+  separatorType="middle" // middle or all
 />
 ```
 
@@ -87,6 +94,11 @@ This is minimal style for your input, you can change it to match your use-case:
     &:focus {
       outline: none
     }
+  }
+
+  :deep(span) {
+    padding: 0 0px 0 10px;
+    font-size: 30px;
   }
 }
 </style>
