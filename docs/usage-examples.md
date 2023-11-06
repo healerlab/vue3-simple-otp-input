@@ -56,6 +56,8 @@ Use the component in your template:
   :outlined="true"
   ref="otpInput"
   :only-number="true"
+  separator="-"
+  separatorType="middle"
 />
 ```
 

@@ -271,18 +271,6 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
   integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
 
-"@healerlab/vue3-simple-otp-input@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.4.tgz#46fb48ddaf07773cf955909e49aa4d20fb8089e3"
-  integrity sha512-Pmb3bB99MCaB8yd7Jv7sijrIYWbXVuoLF8GQn7mA2yo5J7guTm9u1dJnq+nDNxWm2f9v7xQlJbAWwzs7h64/YA==
-
-"@healerlab/vue3-simple-otp-input@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.5.tgz#f491c01b3f45c47068de703b794a2fe5a04fd059"
-  integrity sha512-qKvlbAgfAzuORsw2migjYBSUh2iWvScDfja51IGWWtbplSuIBVWwvCttY4JB1+eavR/GrOhiwXDBSa4Esd6bug==
-  dependencies:
-    "@healerlab/vue3-simple-otp-input" "^0.0.4"
-
 "@jridgewell/sourcemap-codec@^1.4.15":
   version "1.4.15"
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz"

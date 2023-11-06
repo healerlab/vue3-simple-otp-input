@@ -10,6 +10,9 @@
       :outlined="true"
       ref="otpInput"
       :only-number="true"
+      autocomplete="off"
+      separator="-"
+      separatorType="middle"
     />
   </div>
 </template>
@@ -19,14 +22,21 @@ const otpInput = ref<any>(null)
 import HOtpInput from './components/HOtpInput.vue'
 const handleComplete = (otpCode: string) => {
   console.log(111, otpCode);
+  // getInputWithSeparator()
 }
 
 const handleChange = (otpCode: string) => {
   console.log(222, otpCode);
 }
+
+// const getInputWithSeparator = () => {
+// console.log(otpInput?.value?.genResultWithSeparator());
+// }
 </script>
 <style lang="scss" scoped>
 .otp-input {
+  display: flex;
+  align-items: center;
   :deep(input) {
     outline: none;
     width: 30px;
@@ -41,6 +51,11 @@ const handleChange = (otpCode: string) => {
     &:focus {
       outline: none
     }
+  }
+
+  :deep(span) {
+    padding: 0 0px 0 10px;
+    font-size: 30px;
   }
 }
 </style>
