@@ -69,6 +69,7 @@ const isAllowPaste = ref(false)
 const otpLength = ref(6)
 const currentOtpType = ref('text')
 const currentSeparator = ref('middle')
+const isAllowSeparator = ref(false)
 
 const changeOnlyNumber = () => {
   otpInput.value.clear()
@@ -84,6 +85,8 @@ const changeOtpType = () => {
 }
 
 const changeSeparator = () => currentSeparator.value = currentSeparator.value === "middle" ? "all" : "middle"
+
+const changeAllowSeparator = () => isAllowSeparator.value = !isAllowSeparator.value
 </script>
 <label>Current OTP Length is: `{{ otpLength }}`</label> <br />
 <label><input type="checkbox" :checked="isOutlined" @change="isOutlined = !isOutlined"> Outlined</label>
@@ -93,6 +96,7 @@ const changeSeparator = () => currentSeparator.value = currentSeparator.value ==
 <label><input type="checkbox" :checked="isReadonly" @change="isReadonly = !isReadonly"> Readonly</label>
 <label><input type="checkbox" :checked="isAllowPaste" @change="isAllowPaste = !isAllowPaste"> AllowPaste</label> <br />
 <label><input type="checkbox" @change="changeOtpType"> OTP type: `{{ currentOtpType }}`</label> <br />
+<label><input type="checkbox" @change="changeAllowSeparator"> Allow separator: `{{ isAllowSeparator }}`</label> <br />
 <label><input type="checkbox" @change="changeSeparator"> Separator: `{{ currentSeparator }}`</label> <br />
 
 
@@ -115,7 +119,7 @@ const changeSeparator = () => currentSeparator.value = currentSeparator.value ==
   :readonly="isReadonly"
   :allowPaste="isAllowPaste"
   :separatorType="currentSeparator"
-  separator="-"
+  :separator="isAllowSeparator ? '-' : ''"
 />
 <!-- Using
 <button @click="clearOtp">Clear OTP</button> -->
