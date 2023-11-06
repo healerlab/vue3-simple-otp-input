@@ -271,6 +271,32 @@
   resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
   integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
 
+"@healerlab/vue3-simple-otp-input@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.4.tgz#46fb48ddaf07773cf955909e49aa4d20fb8089e3"
+  integrity sha512-Pmb3bB99MCaB8yd7Jv7sijrIYWbXVuoLF8GQn7mA2yo5J7guTm9u1dJnq+nDNxWm2f9v7xQlJbAWwzs7h64/YA==
+
+"@healerlab/vue3-simple-otp-input@^0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.5.tgz#f491c01b3f45c47068de703b794a2fe5a04fd059"
+  integrity sha512-qKvlbAgfAzuORsw2migjYBSUh2iWvScDfja51IGWWtbplSuIBVWwvCttY4JB1+eavR/GrOhiwXDBSa4Esd6bug==
+  dependencies:
+    "@healerlab/vue3-simple-otp-input" "^0.0.4"
+
+"@healerlab/vue3-simple-otp-input@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.8.tgz#28ae5004d2f56e9e75ddcbade41497d5287e40da"
+  integrity sha512-DBY3/Y3rmQisq+tMc93wvg/y1M7uM5R/IuVMnuD4J5DiJlLbiqo4g01mR/F+gZbs8vdqFUxKotQ77amPXlujHw==
+  dependencies:
+    "@healerlab/vue3-simple-otp-input" "^0.0.5"
+
+"@healerlab/vue3-simple-otp-input@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@healerlab/vue3-simple-otp-input/-/vue3-simple-otp-input-0.0.9.tgz#1c9caf9ab231640e7e7de29f8e2d4235cc2fb600"
+  integrity sha512-joK5kc4fqxq2XmX2K8ZKrzE+SrKQgESK/8+W93A1xrW2Jmvzi8AcMMKwE+6OH7Hftv2Ns12Hje/Ln1yAU6dDDQ==
+  dependencies:
+    "@healerlab/vue3-simple-otp-input" "^0.0.8"
+
 "@jridgewell/sourcemap-codec@^1.4.15":
   version "1.4.15"
   resolved "https://registry.npmjs.org/@jridgewell/sourcemap-codec/-/sourcemap-codec-1.4.15.tgz"

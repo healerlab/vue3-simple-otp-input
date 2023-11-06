@@ -26,8 +26,8 @@ This page demonstrates usage of props and events provided by HOtpInput.
 | onChange | `Function` | `null` | Callback event that return OTP code when we made a change in inputs. `(otpCode: string)` |
 | onFinish | `Function` | `null` | Callback event that return OTP code when we fully typed all inputs. `(otpCode: string)` |
 | separator | `String` | `null` | Separator to be rendered. |
-| separatorType | `String` | `middle` | Default separator position if separator is not null |
-
+| separatorType | `String` | `"middle", "all"` | Default separator position if separator is not null |
+| genResultWithSeparator | `Function` | `null` | Using this event, exposed from otp component to get code with separator |
 See the [Vue3 Simple OTP Input](https://www.npmjs.com/package/@healerlab/vue3-simple-otp-input) package for more information.
 
 
@@ -43,12 +43,15 @@ const { HOtpInput } = pkg
 const otpInput = ref(null)
 const otpCode = ref()
 const otpCodeChange = ref()
+const otpWithSeparator = ref()
 
 const handleFinish = (code: string) => {
   otpCode.value = code
+  otpWithSeparator.value = otpInput?.value?.genResultWithSeparator()
 }
 
 const handleChange = (code: string) => {
+  otpWithSeparator.value = ''
   otpCodeChange.value = code
   if (!code) otpCode.value = ''
 }
@@ -65,6 +68,7 @@ const isReadonly = ref(false)
 const isAllowPaste = ref(false)
 const otpLength = ref(6)
 const currentOtpType = ref('text')
+const currentSeparator = ref('middle')
 
 const changeOnlyNumber = () => {
   otpInput.value.clear()
@@ -78,6 +82,8 @@ const changeOTPLength = (isInCrease: boolean) => {
 const changeOtpType = () => {
   currentOtpType.value = currentOtpType.value === "password" ? "text" : "password"
 }
+
+const changeSeparator = () => currentSeparator.value = currentSeparator.value === "middle" ? "all" : "middle"
 </script>
 <label>Current OTP Length is: `{{ otpLength }}`</label> <br />
 <label><input type="checkbox" :checked="isOutlined" @change="isOutlined = !isOutlined"> Outlined</label>
@@ -87,6 +93,7 @@ const changeOtpType = () => {
 <label><input type="checkbox" :checked="isReadonly" @change="isReadonly = !isReadonly"> Readonly</label>
 <label><input type="checkbox" :checked="isAllowPaste" @change="isAllowPaste = !isAllowPaste"> AllowPaste</label> <br />
 <label><input type="checkbox" @change="changeOtpType"> OTP type: `{{ currentOtpType }}`</label> <br />
+<label><input type="checkbox" @change="changeSeparator"> Separator: `{{ currentSeparator }}`</label> <br />
 
 
 <a @click="changeOTPLength(false)" href="javascript:void(0)">Change OTP Length to 4</a>
@@ -107,6 +114,8 @@ const changeOtpType = () => {
   :disabled="isDisabled"
   :readonly="isReadonly"
   :allowPaste="isAllowPaste"
+  :separatorType="currentSeparator"
+  separator="-"
 />
 <!-- Using
 <button @click="clearOtp">Clear OTP</button> -->
@@ -114,3 +123,5 @@ const changeOtpType = () => {
 <span>The final OTP code is: `{{ otpCode }}`</span>
 <br />
 <span>The OTP changed to:  `{{ otpCodeChange }}`</span>
+<br />
+<span>The OTP with separator:  `{{ otpWithSeparator }}`</span> (get code by calling genResultWithSeparator() exposed from otp component)

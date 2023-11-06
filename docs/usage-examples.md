@@ -82,6 +82,11 @@ This is minimal style for your input, you can change it to match your use-case:
       outline: none
     }
   }
+
+  :deep(span) {
+    padding: 0 0px 0 10px;
+    font-size: 30px;
+  }
 }
 </style>
 ```

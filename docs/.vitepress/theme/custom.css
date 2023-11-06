@@ -14,3 +14,13 @@
 .otp-input input:focus {
   outline: none
 }
+
+.otp-input {
+  display: flex;
+  align-items: center;
+}
+
+.otp-input div span {
+  padding: 0 0px 0 10px;
+  font-size: 30px;
+}
